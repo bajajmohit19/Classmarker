@@ -38,6 +38,7 @@ updateQuestion = ()=>{
 function clearRecords(){
     document.querySelector('#questions').innerHTML = '';
 }
+
 function editRecords (){
     var id = document.querySelector('#id').innerText;
     console.log(id,"121212121")
