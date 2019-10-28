@@ -2,78 +2,92 @@ window.addEventListener('load', bindEvents);
 
 const fn = initCount();
 console.log(initCount)
-const loadCount = ()=>{
+const loadCount = () => {
     document.querySelector('#id').innerHTML = fn();
 }
-function bindEvents (){
+function bindEvents() {
     loadCount();
     init();
-    displayCount();   
+    displayCount();
 }
 
-init = ()=>{
-     document.querySelector('#add').addEventListener('click', addQuestion);
-     document.querySelector('#delete').addEventListener('click',deleteRecords);
-     document.querySelector('#edit').addEventListener('click', editRecords);
+init = () => {
+    document.querySelector('#add').addEventListener('click', addQuestion);
+    document.querySelector('#delete').addEventListener('click', deleteRecords);
+    document.querySelector('#edit').addEventListener('click', editRecords);
+    document.querySelector('#search').addEventListener('click', search)
 }
 
-updateQuestion = ()=>{
+updateQuestion = () => {
     // var question = new Question();   
     console.log(question)
-    for(let key in question){
+    for (let key in question) {
         console.log(key)
-        if(key == 'markForDelete'){
-            
+        if (key == 'markForDelete') {
+
             continue;
         }
-        if(key == 'id'){
+        if (key == 'id') {
             console.log("inside")
-            question[key] = document.querySelector("#"+key).innerText;
+            question[key] = document.querySelector("#" + key).innerText;
             continue;
         }
-        question[key] = document.querySelector('#'+key).value
+        question[key] = document.querySelector('#' + key).value
     }
     return question;
 }
-function clearRecords(){
+function search() {
+    var result = questionOp.search(document.querySelector('#querySearch').value);
+    if (!result) {
+        document.querySelector('#querySearch').value = 'Invalid search input'
+    }
+    console.log(result)
+    clearRecords()
+    print(result);
+    document.querySelector('#querySearch').addEventListener('keyup', function () {
+        console.log("Insidde121212121")
+        if (document.querySelector('#querySearch').value == '') {
+            console.log('Inside ifff12121212')
+            clearRecords();
+            questionOp.questions.forEach((q) => print(q))
+        }
+    })
+}
+function clearRecords() {
     document.querySelector('#questions').innerHTML = '';
 }
 
-function editRecords (){
+function editRecords() {
     var id = document.querySelector('#id').innerText;
-    console.log(id,"121212121")
+    console.log(id, "121212121")
     var index = questionOp.questions.findIndex(q => q.id == id);
-    console.log(index,"121212121")
-    // if(updateQuestion()){
-        console.log('inside')
-        questionOp.questions[index] = updateQuestion();
-        // updateQuestion(questionOp.questions[index]);
-        console.log(questions)
-    // }
-    // else return;
-    
+    console.log(index, "121212121")
+    console.log('inside')
+    questionOp.questions[index] = updateQuestion();
+    console.log(questions)
+
     console.log(question)
     clearRecords();
-    questionOp.questions.forEach(question=> print(question))
+    questionOp.questions.forEach(question => print(question))
 }
-clearFields = ()=>{
-    document.querySelectorAll('.clear').forEach(field=>field.value='');
+clearFields = () => {
+    document.querySelectorAll('.clear').forEach(field => field.value = '');
 }
-addQuestion = ()=>{
+addQuestion = () => {
     var question = new Question();
     console.log(question)
-    for(let key in question){
+    for (let key in question) {
         // console.log(key)
-        if(key == 'markForDelete'){
-            
+        if (key == 'markForDelete') {
+
             continue;
         }
-        if(key == 'id'){
+        if (key == 'id') {
             console.log("inside")
-            question[key] = document.querySelector("#"+key).innerText;
+            question[key] = document.querySelector("#" + key).innerText;
             continue;
         }
-        question[key] = document.querySelector('#'+key).value
+        question[key] = document.querySelector('#' + key).value
     }
     loadCount();
     questionOp.add(question);
@@ -82,32 +96,32 @@ addQuestion = ()=>{
     console.log("@@@@@@@", question);
 }
 
-function editQuestion(){
+function editQuestion() {
     console.log("edit call", this.getAttribute('qid'))
     var qid = this.getAttribute('qid')
     question = questionOp.search(qid)
     fillInputs(question);
 
 }
-function fillInputs(question){
-    for(let key in question){
-        if(key == 'id'){
-            document.querySelector('#'+key).innerText = question[key]
+function fillInputs(question) {
+    for (let key in question) {
+        if (key == 'id') {
+            document.querySelector('#' + key).innerText = question[key]
             continue;
         }
-        if( key == 'markForDelete'){
+        if (key == 'markForDelete') {
             continue;
         }
-        document.querySelector('#'+key).value = question[key]
+        document.querySelector('#' + key).value = question[key]
     }
 }
 
-print = (question)=>{
+print = (question) => {
     var index = 0;
     var tbody = document.querySelector('#questions');
     var tr = tbody.insertRow();
-    for(let key in question){
-        if(key == 'markForDelete'){
+    for (let key in question) {
+        if (key == 'markForDelete') {
             continue;
         }
         tr.insertCell(index).innerText = question[key];
@@ -119,22 +133,22 @@ print = (question)=>{
     displayCount();
 
 }
-displayCount = ()=>{
+displayCount = () => {
     document.querySelector('#total').innerText = questionOp.questions.length;
     document.querySelector('#mark').innerText = questionOp.markCount()
     document.querySelector('#unmark').innerText = questionOp.unmarkCount()
 }
-createIcon = (className, fn, id)=>{
+createIcon = (className, fn, id) => {
     var button = document.createElement('button');
     button.setAttribute('class', className);
     button.addEventListener('click', fn)
     button.setAttribute('qid', id);
     console.log(button)
-    
+
     return button
 }
 function toggleMark() {
-    console.log("qdqwd",this)
+    console.log("qdqwd", this)
     var attribute = this.getAttribute('qid')
     console.log(attribute)
     var tr = this.parentNode.parentNode;
@@ -143,12 +157,12 @@ function toggleMark() {
     questionOp.mark(attribute);
     displayCount()
 }
-function printRecords(question){
-   document.querySelector('#questions').innerHTML = "";
-   question.forEach(question => print(question));
-   displayCount();
+function printRecords(question) {
+    document.querySelector('#questions').innerHTML = "";
+    question.forEach(question => print(question));
+    displayCount();
 }
-const deleteRecords = ()=>{printRecords(questionOp.delete())}
- 
+const deleteRecords = () => { printRecords(questionOp.delete()) }
+
 
 
