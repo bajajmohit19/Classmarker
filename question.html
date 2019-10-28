@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+        <script src="./js/utils.js"></script>
+        <script src="./js/questions.js"></script>
+        <script src="./js/questionOperations.js"></script>
+        <script src="./js/controller.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1 class="text-center alert-success">Add Question</h1>
+        <div class="form-group">
+            <div class="form-item">
+                <label for="id">Question Id</label>
+                <label id='id' class="form-control clear"></label>
+            </div>
+
+            <div class="form-item">
+                <label for="id">Name</label>
+                <textarea class="form-control clear" id="name" placeholder="Question Description"></textarea>
+            </div>
+            <div class="form-item">
+                <label for="">Option A</label>
+                <input class="form-control clear" id="optionA" placeholder="Enter the option">
+            </div>
+            <div class="form-item">
+                <label for="">Option B</label>
+                <input class="form-control clear" id="optionB" placeholder="Enter the option">
+            </div>
+            <div class="form-item">
+                <label for="">Option C</label>
+                <input class="form-control clear" id="optionC" placeholder="Enter the option">
+            </div>
+            <div class="form-item">
+                <label for="">Option D</label>
+                <input class="form-control clear" id="optionD" placeholder="Enter the option">
+            </div>
+            <div class="form-item">
+                <label for="">Right Ans</label>
+                <input class="form-control clear" id="rightAns" placeholder="Enter the answer">
+            </div>
+        </div>
+        <button type="submit" id="add" class="btn btn-success">Add</button>
+        <button type="submit" id="delete" class="btn btn-danger">Delete</button>
+        <button type="submit" id="edit" class="btn btn-primary">Edit</button>
+        <button type="submit" id="search" class="btn btn-info">Search</button>
+        <button type="submit" id="sort" class="btn btn-warning">Sort</button>
+        <button type="submit" id="server" class="btn btn-default">Save To Server</button>
+        <h2>Total Records <span id="total"></span> Mark For Delete <span id="mark"></span> Unmarked <span id="unmark"></span>
+        </h2>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Option A</th>
+                    <th>Option B</th>
+                    <th>Option C</th>
+                    <th>Option D</th>
+                    <th>Right Answer</th>
+                    <th>Operations</th>
+
+                </tr>
+            </thead>
+
+            <tbody id="questions">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
