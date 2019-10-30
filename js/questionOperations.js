@@ -31,5 +31,16 @@ const questionOp = {
         return this.questions.find((question) =>
             question.id == query || question.name == query
             )
+    },
+    sort(sort){
+        if(sort == 'id'){
+            var arr = [...this.questions];
+            arr.sort((a,b)=> a[sort]-b[sort])
+            return arr;
+        }else if(sort == 'name'){
+            var arr = [...this.questions];
+            arr.sort((first, second)=>first[sort].localCompare(second[sort]))
+            return arr
+        }else return false;
     }
 }

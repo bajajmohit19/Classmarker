@@ -21,6 +21,8 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
 
     <!-- Optional theme -->
     
@@ -77,7 +79,15 @@
                 <input type="button" id="search" value="Search Input"></input>
                 <input id="querySearch" type="text" placeholder="Search...">
             </div>
-        <button type="submit" id="sort" class="btn btn-warning">Sort</button>
+            <h2>Questions</h2>
+        <div id="sort" class="mt-5">Sort by - 
+            <ul id="info" class="list-inline">
+                <li class="list-inline-item"><a id="idSort" class="current" href="#questionTable">Id</a></li>
+                <li class="list-inline-item"><a id="nameSort" href="#questionTable">Name</a></li>
+                <li class="list-inline-item"><a id="scoreSort" href="#questionTable">Score</a></li>
+            </ul>
+        </div>
+        <!-- <button type="submit" id="sort" class="btn btn-warning">Sort</button> -->
         <button type="submit" id="server" class="btn btn-default">Save To Server</button>
         <h2>Total Records <span id="total"></span> Mark For Delete <span id="mark"></span> Unmarked <span id="unmark"></span>
         </h2>
